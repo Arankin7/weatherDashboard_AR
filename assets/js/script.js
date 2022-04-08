@@ -57,7 +57,7 @@ var displayWeather = function(weather, searchCity){
 
     // create image element
     var weatherIcon = document.createElement("img");
-    // weatherIcon.setAttribute("src", 'https://openweathermap.org/img/wn/${weather[0].icon}@2x.png');
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
     searchedCityEl.appendChild(weatherIcon);
 
     // create span to hold temp data
@@ -155,12 +155,11 @@ var displayForecast = function(weather){
         forecastDate.classList = "card-header text-center";
         forecastEl.appendChild(forecastDate);
 
-        console.log(dailyForecast);
+        // console.log(dailyForecast);
         
-
         var weatherIcon = document.createElement("img");
         weatherIcon.classList = "card-body text-center";
-        // weatherIcon.setAttribute("src", 'https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png');
+        weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
         forecastEl.appendChild(weatherIcon);
 
         var forecastTempEl = document.createElement("span");

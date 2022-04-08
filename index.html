@@ -9,45 +9,39 @@
     <title>What's the Weather?</title>
 </head>
 <body>
-    <main>
     <!-- Weather Dashboard Header -->
-    <header>
-        <h1>Weather Dashboard</h1>
+    <header class="bg-primary text-light p-2">
+        <h1 class="text-center">Weather Dashboard</h1>
     </header>
-    
+    <main class="container-fluid">
     <!-- Div for main page content -->
-    <div>
+        <div class="row">
         <!-- Search Section -->
-        <section id="search">
-            <h2>Search for a City:</h2>
-            <!-- textarea/input for searching -->
-            <input type="text" id="citySearch">
-            <button class="btn btn-primary" id="searchBtn">Search</button>
-            <!-- Search History section -->
-            <div>
-                <h3>History</h3>
-            </div>
-        </section>
-
-        <!-- Current Day Section -->
-        <div>
-            <div id="current-forecast">
-                <h2 id="currentCity"></h2>
-                <div id="currentWeatherContainer" class="list-group"></div>
+            <div class="col-12 col-md-3 p-2" id="search">
+                <form class="bg-secondary text-light border p-2">
+                    <h2>Search for a City:</h2>
+                    <input type="text" autofocus = "true" class="form-input" id="citySearch">
+                    <button class="btn btn-primary m-1" id="searchBtn">Search</button>
+                </form>
+                <!-- Search History section -->
+                <div>
+                </div>
             </div>
 
+            <!-- Current Day Section -->
+            <div class="col-12 col-md-9">
+                <div class="col-12 row-border" id="current-forecast">
+                    <h2 id="currentCity"></h2>
+                    <div id="currentWeatherContainer" class="list-group"></div>
+                </div>
+            </div>
+
+            <!-- 5 day forcast section  -->
+            <div class="row border m-2">
+                <h2 class="col-12">5-Day Forecast:</h2>
+                <div class="d-flex" id="forecastFiveDay"></div>
+            </div>       
         </div>
-
-        <!-- 5 day forcast section  -->
-        <section>
-            <h2>5-Day Forecast:</h2>
-            <div id="forecastFiveDay"></div>
-        </section>
-
-        <!-- footer? -->
-        <footer></footer>
-
-    </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
