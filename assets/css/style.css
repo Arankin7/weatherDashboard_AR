@@ -1,7 +1,10 @@
+.hidden {
+    display: none;
+}
 
-
-
-
+#dashboardHeader, #cityForm, .dayHeader{
+    text-shadow: 1px 1px 3px black;
+}
 span.severe{
     padding: 3px;
     background-color: red;
@@ -18,3 +21,21 @@ span.favorable{
     background-color: green;
     color:white;
 }
+
+#cityForm {
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px black;
+}
+#searchBtn {
+    box-shadow: 0px 0px 5px black;
+}
+
+.histBtn{
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px black;
+}
+
+.dayForecast {
+    box-shadow: 1px 1px 10px black;
+}
+

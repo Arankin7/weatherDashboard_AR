@@ -11,14 +11,14 @@
 <body>
     <!-- Weather Dashboard Header -->
     <header class="bg-primary text-light p-2">
-        <h1 class="text-center">Weather Dashboard</h1>
+        <h1 class="text-center" id="dashboardHeader">Weather Dashboard</h1>
     </header>
     <main class="container-fluid">
     <!-- Div for main page content -->
         <div class="row">
         <!-- Search Section -->
             <div class="col-12 col-md-3 p-2" id="search">
-                <form class="bg-secondary text-light border p-2">
+                <form class="bg-secondary text-light border p-2" id="cityForm">
                     <h2>Search for a City:</h2>
                     <input type="text" autofocus = "true" class="form-input" id="citySearch">
                     <button class="btn btn-primary m-1" id="searchBtn">Search</button>
@@ -38,7 +38,7 @@
 
             <!-- 5 day forcast section  -->
             <div class="row border m-2">
-                <h2 class="col-12">5-Day Forecast:</h2>
+                <h2 class="col-12 hidden" id="forecastHeader">5-Day Forecast:</h2>
                 <div class="d-flex" id="forecastFiveDay"></div>
             </div>       
         </div>

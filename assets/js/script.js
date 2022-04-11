@@ -1,4 +1,3 @@
-var cities = [];
 const apiKey = "78226ef2dd12503663f82f2dfa7771bc";
 
 var searchEl = document.querySelector("#citySearch");
@@ -6,6 +5,7 @@ var weatherContainerEl = document.querySelector("#currentWeatherContainer");
 var searchedCityEl = document.querySelector("#currentCity");
 var forecastContainerEl = document.querySelector("#forecastFiveDay");
 var searchHistoryBtnEl = document.querySelector("#searchHistory");
+var forecastHeaderEl = document.querySelector("#forecastHeader");
 
 
 var searchHandler = function(event){
@@ -15,14 +15,12 @@ var searchHandler = function(event){
     if(city){
         getWeather(city);
         getForecast(city);
-
-        cities.unshift({city});
         searchEl.value = "";
     }
     else {
         alert("Please enter a City");
     }
-    searchHistory(city);
+    
 };
 
 // gets current weather from openweathermap
@@ -31,15 +29,23 @@ var getWeather = function(city){
     
     fetch(apiURL)
     .then(function(response){
-        response.json().then(function(data){
-            displayWeather(data, city)
-        });
+        if(response.ok){
+            response.json().then(function(data){
+                displayWeather(data, city)
+            });
+            searchHistory(city);
+        }
+        else{
+            alert("Please enter a City")
+        }
     });
 };
 
 // displays current weather
 var displayWeather = function(weather, searchCity){
     // console.log(weather);
+
+    forecastHeaderEl.classList.remove("hidden");
 
     // clear old content
     weatherContainerEl.textContent = "";
@@ -143,11 +149,11 @@ var displayForecast = function(weather){
 
         // create div for each day
         var forecastEl = document.createElement("div");
-        forecastEl.classList = "card bg-primary text-light m-2";
+        forecastEl.classList = "dayForecast card bg-primary text-light m-2";
 
         var forecastDate = document.createElement("h4");
         forecastDate.textContent = moment.unix(dailyForecast.dt).format("MMM D, YYYY");
-        forecastDate.classList = "card-header text-center";
+        forecastDate.classList = "dayHeader card-header text-center";
         forecastEl.appendChild(forecastDate);
 
         // console.log(dailyForecast);
@@ -176,7 +182,7 @@ var searchHistory = function(searchHistory){
 
     searchHistoryEl = document.createElement("button");
     searchHistoryEl.textContent = searchHistory;
-    searchHistoryEl.classList = "d-flex w-100 btn-light border p-2";
+    searchHistoryEl.classList = "histBtn d-flex w-100 btn-light border p-2 m-1";
     searchHistoryEl.setAttribute("data-city", searchHistory);
     searchHistoryEl.setAttribute("type", "submit");
 
