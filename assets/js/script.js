@@ -1,5 +1,3 @@
-// var searchEl = document.querySelector("#search");
-
 var cities = [];
 const apiKey = "78226ef2dd12503663f82f2dfa7771bc";
 
@@ -7,6 +5,7 @@ var searchEl = document.querySelector("#citySearch");
 var weatherContainerEl = document.querySelector("#currentWeatherContainer");
 var searchedCityEl = document.querySelector("#currentCity");
 var forecastContainerEl = document.querySelector("#forecastFiveDay");
+var searchHistoryBtnEl = document.querySelector("#searchHistory");
 
 
 var searchHandler = function(event){
@@ -23,11 +22,7 @@ var searchHandler = function(event){
     else {
         alert("Please enter a City");
     }
-
-};
-
-var saveSearch = function(){
-    localStorage.setItem("cities", JSON.stringify(cities));
+    searchHistory(city);
 };
 
 // gets current weather from openweathermap
@@ -174,9 +169,28 @@ var displayForecast = function(weather){
         forecastEl.appendChild(forecastHumidEl);
 
         forecastContainerEl.appendChild(forecastEl);
+    }   
+}
+
+var searchHistory = function(searchHistory){
+
+    searchHistoryEl = document.createElement("button");
+    searchHistoryEl.textContent = searchHistory;
+    searchHistoryEl.classList = "d-flex w-100 btn-light border p-2";
+    searchHistoryEl.setAttribute("data-city", searchHistory);
+    searchHistoryEl.setAttribute("type", "submit");
+
+    searchHistoryBtnEl.append(searchHistoryEl);
+}
+
+var searchHistoryHandler = function(event){
+    var city = event.target.getAttribute("data-city");
+    if(city){
+        getWeather(city);
+        getForecast(city);
     }
-    
 }
 
 // click handlers
 $("#searchBtn").on("click", searchHandler);
+$("#searchHistory").on("click", searchHistoryHandler);
